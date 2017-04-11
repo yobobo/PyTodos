@@ -3,8 +3,7 @@
 from setuptools import setup
 
 entry_points = [
-    # todo
-    "todos = PyTodos.todo:todos"
+    "t=PyTodos.todo:cli"
 ]
 
 setup(

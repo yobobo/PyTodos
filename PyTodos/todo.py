@@ -1,16 +1,19 @@
 # -*- coding: utf-8 -*-
-class Todo(object):
 
-    def __init__(self):
-        """Todo Base Class
-        """
-        self.todos = []
+import click
 
-    def init(self):
-        """init `todo` file
-        if file exists, then initialization self.todos
-        and record current max index of todos
-        : when add a new todo, the `idx` via only `self.current_max_idx + 1`
-        """
-        print 'Hello world'
-        return 'hello world'
+
+@click.group(context_settings={'help_option_names': ('-h', '--help')})
+def cli():
+    pass
+
+
+@cli.command()
+def add(task_detail):
+    print task_detail
+    print 'task added.'
+
+
+@cli.command()
+def kill():
+    print 'killed'
