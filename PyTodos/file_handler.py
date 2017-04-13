@@ -19,6 +19,10 @@ def read_file(file_path=FILE):
     with open(file_path, 'r') as fp:
         line = fp.readline()
         while line:
-            todos.append(json.loads(line))
-            line = fp.readline()
+            try:
+                todos.append(json.loads(line))
+                line = fp.readline()
+            except ValueError:
+                write_file(todos, file_path)
+                return todos
     return todos
