@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
+import os
 import time
 
 from PyTodos.file_handler import read_file, write_file
 
-TEST_FILE = './test_data.txt'
+directory = os.path.dirname(os.path.abspath(__file__))
+TEST_FILE = '{directory}/test_data.txt'.format(directory=directory)
 
 
 def test_file_handler():
@@ -20,6 +22,6 @@ def test_file_handler():
             'timestamp': now
         }
     ]
-    write_file(write_todos, TEST_FILE)
+    write_file(write_todos, file_path=TEST_FILE)
     read_todos = read_file(TEST_FILE)
     assert read_todos == write_todos

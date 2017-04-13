@@ -2,20 +2,21 @@
 import os
 import json
 
-FILE = './data.txt'
+directory = os.path.dirname(os.path.abspath(__file__))
+FILE = '{directory}/data.txt'.format(directory=directory)
 
 
-def write_file(todos):
-    with open(FILE, 'w') as fp:
+def write_file(todos, file_path=FILE):
+    with open(file_path, 'w') as fp:
         for todo in todos:
             fp.write('{}\n'.format(json.dumps(todo)))
 
 
-def read_file():
+def read_file(file_path=FILE):
     todos = []
-    if not os.path.exists(FILE):
+    if not os.path.exists(file_path):
         return todos
-    with open(FILE, 'r+') as fp:
+    with open(file_path, 'r') as fp:
         line = fp.readline()
         while line:
             todos.append(json.loads(line))

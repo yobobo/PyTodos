@@ -1,25 +1,17 @@
 # -*- coding: utf-8 -*-
 
 import click
-import pprint
 
 from file_handler import read_file, write_file
-
-pp = pprint.PrettyPrinter(indent=4)
 
 
 def show(todos):
     for index, todo in enumerate([todo for todo in todos if todo['status'] == 0]):
-        print '{}. {}'.format(index+1, todo['task_detail'])
+        print '{}. {}'.format(index+1, todo['task_detail'].encode('utf-8'))
 
 
-@click.group(context_settings={'help_option_names': ('-h', '--help')})
-def cli():
-    pass
-
-
-@cli.command()
-@click.option('--task_detail', default='Hello', help='Details of your task')
+@click.command()
+@click.argument('task_detail')
 def add(task_detail):
     todos = read_file()
     todos.append(
@@ -32,16 +24,20 @@ def add(task_detail):
     print 'got it.'
 
 
-@cli.command()
-def l():
+@click.command()
+def list():
     todos = read_file()
+    if not todos:
+        print 'Cool! You have no extra tasks!'
+        return
     show(todos)
 
 
-@cli.command()
-@click.option('--task_id', default=1, help='finished this task already')
+@click.command()
+@click.argument('task_id')
 def kill(task_id):
     todos = [todo for todo in read_file() if todo['status'] == 0]
-    todos[task_id-1]['status'] = 1
+    todos[int(task_id)-1]['status'] = 1
     write_file(todos)
-    print 'cool!'
+    print 'cool!\nTasks left:'
+    show(todos)
