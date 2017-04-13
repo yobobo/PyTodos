@@ -62,7 +62,5 @@ target/
 .ipynb_checkpoints
 
 temp/
-
-main.ini
-
-wechatbot/docs/_build/*
+data.txt
+test_data.txt
