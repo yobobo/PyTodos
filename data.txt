@@ -1,0 +1,5 @@
+{"status": 0, "task_detail": "\u4ee3\u7406\u5546\u670d\u52a1\u5305"}
+{"status": 0, "task_detail": "\u5168\u94fe\u8def\u8054\u8c03"}
+{"status": 0, "task_detail": "\u5904\u7406\u4e1c\u4e1c\u7684\u65e5\u5fd7"}
+{"status": 1, "task_detail": "\u770b\u9501"}
+{"status": 0, "task_detail": "\u770bMySQL\u7684\u9501"}
